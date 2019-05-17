@@ -14,7 +14,8 @@
 	<h1>Welcome!</h1>
 	
 <body>
-	<h2>Enter the initial member budgets :</h2>
+
+	<h2>Enter the member name and initial budget :</h2>
 	
 	<form action="#" th:action="@{/home}" th:object="${member}" method="post">
 		First name: <input type="text" th:field="*{name}" >
@@ -23,7 +24,7 @@
   	</form>
 
   	
-  	<h3>Current member repository: </h3>
+  	<h2>Current member repository: </h2>
 
   	
 	

@@ -3,8 +3,10 @@ package com.expenses.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.expenses.mockrepository.MemberRepository;
@@ -37,6 +39,7 @@ public class RestRequestController {
 		//Adding member repository for saving members and a new member instance
 		model.addAttribute("membersrepo", memberRepo.getRepository().values());
 		model.addAttribute("member", new GroupMember());
+		model.addAttribute("deletionID", this.expenseService.getDeletionID());
 		
 		//html located in templates folder of the project
 		return "welcomepage";
@@ -58,8 +61,31 @@ public class RestRequestController {
 		//The rest is same setup as get mapping
 		model.addAttribute("membersrepo", memberRepo.getRepository().values());
 		model.addAttribute("member", new GroupMember());
+		model.addAttribute("deletionID", this.expenseService.getDeletionID());
+		
 		return "welcomepage";
 	}
+	
+	//BAD PRACTICE ALERT - deleting with a get mapping
+	@GetMapping("/deleteMember/{id}")
+	public String deleteById(@PathVariable int id) {
+		
+		MemberRepository memberRepo = this.expenseService.getRepository();
+		if(memberRepo.deleteMemberById(id)) {
+			return "deleteSuccessful";
+		}
+		return "deleteUnsuccessful";
+	}
+	
+	//BAD PRACTICE ALERT - deleting with a get mapping
+	@GetMapping("/deleteAll")
+	public String deleteAll() {
+		
+		MemberRepository memberRepo = this.expenseService.getRepository();
+		memberRepo.clearRepository();
+		return "clearedAllPage";
+	}
+	
 	
 	/**
 	 * Returns the page where user is redirected after pressing redirect link on welcome page
