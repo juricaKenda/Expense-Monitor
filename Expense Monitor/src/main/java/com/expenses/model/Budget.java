@@ -4,6 +4,10 @@ public class Budget implements BudgetingEssentials{
 
 	private int currentBudget;
 
+	public Budget() {
+		
+	}
+	
 	public Budget(int startingBudget) {
 		this.currentBudget = startingBudget;
 	}
@@ -11,7 +15,8 @@ public class Budget implements BudgetingEssentials{
 	@Override
 	public boolean cutback(int amount) {
 		this.currentBudget -= amount;
-		return true; //boolean return type set for later options
+		return true; 
+		//boolean return type set for later options
 		// Example : we want to forbid budgets to go above or underneath a certain limit
 	}
 
@@ -20,6 +25,15 @@ public class Budget implements BudgetingEssentials{
 		this.currentBudget += amount;
 		return true;
 	}
+
+	public int getCurrentBudget() {
+		return currentBudget;
+	}
+	public void setCurrentBudget(int currentBudget) {
+		this.currentBudget = currentBudget;
+	}
+	
+	
 	
 	
 }
