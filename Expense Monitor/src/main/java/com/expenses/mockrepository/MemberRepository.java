@@ -25,6 +25,7 @@ public class MemberRepository implements RepositoryEssentials {
 
 	@Override
 	public GroupMember getMemberById(int memberId) {
+		//TODO Handle user not found exception
 		return this.repository.get(memberId);
 	}
 
@@ -34,6 +35,23 @@ public class MemberRepository implements RepositoryEssentials {
 
 	public void setRepository(HashMap<Integer, GroupMember> repository) {
 		this.repository = repository;
+	}
+
+	@Override
+	public boolean deleteMemberById(int memberId) {
+		
+		if(this.repository.get(memberId) != null) {
+			this.repository.remove(memberId);
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean clearRepository() {
+		this.repository.clear();
+		return true;
 	}
 	
 	

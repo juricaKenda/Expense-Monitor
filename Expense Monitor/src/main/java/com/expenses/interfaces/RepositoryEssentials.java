@@ -19,4 +19,18 @@ public interface RepositoryEssentials {
 	 * @return a member if found
 	 */
 	GroupMember getMemberById(int memberId);
+	
+	
+	/**
+	 * Searches for a member with a given ID and deletes him
+	 * @param memberId identification number of a particular member
+	 * @return true if a member was found and deleted
+	 */
+	boolean deleteMemberById(int memberId);
+	
+	/**
+	 * Clears all repository entries
+	 * @return if the cleaning was successful, false otherwise
+	 */
+	boolean clearRepository();
 }
