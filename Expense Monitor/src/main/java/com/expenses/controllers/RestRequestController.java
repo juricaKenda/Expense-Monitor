@@ -1,11 +1,11 @@
 package com.expenses.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.expenses.mockrepository.MemberRepository;
 
-@RestController
+@Controller
 public class RestRequestController {
 	
 	private MemberRepository memberRepo = new MemberRepository();
