@@ -1,6 +1,9 @@
 package com.expenses.model;
 
+import org.springframework.stereotype.Component;
+
 import com.expenses.interfaces.BudgetingEssentials;
+
 
 public class Budget implements BudgetingEssentials{
 
