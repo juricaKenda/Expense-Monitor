@@ -1,5 +1,6 @@
 package com.expenses.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,14 @@ import com.expenses.service.Service;
 @Controller
 public class RestRequestController {
 	
+	@Autowired
+	private Service expenseService;
 	
-	private Service expenseService = new Service();
-	
+	public RestRequestController(Service expenseService) {
+		this.expenseService = expenseService;
+	}
+
+
 	/**
 	 * Displays a home page and adds attributes to the model of the page
 	 * @param model a holder for model attributes

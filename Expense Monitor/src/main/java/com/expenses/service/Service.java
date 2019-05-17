@@ -2,17 +2,32 @@ package com.expenses.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.expenses.interfaces.ServiceEssentials;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
 
+@Component
 public class Service implements ServiceEssentials{
 
-	private MemberRepository memberRepo = new MemberRepository(); //Repository for all members in a group
-	private IDgenerator generator = new IDgenerator(); //ID generator used while creating each member
-	private TransactionLog transactionLog = new TransactionLog();
+	@Autowired
+	private MemberRepository memberRepo; //Repository for all members in a group
+	@Autowired
+	private IDgenerator generator; //ID generator used while creating each member
+	@Autowired
+	private TransactionLog transactionLog;
 	
+	
+	
+	public Service(MemberRepository memberRepo, IDgenerator generator, TransactionLog transactionLog) {
+		this.memberRepo = memberRepo;
+		this.generator = generator;
+		this.transactionLog = transactionLog;
+	}
+
 	@Override
 	public int assignUniqueId() {
 		return generator.generateId();

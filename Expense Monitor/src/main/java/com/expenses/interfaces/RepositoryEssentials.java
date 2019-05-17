@@ -1,7 +1,10 @@
 package com.expenses.interfaces;
 
+import org.springframework.stereotype.Component;
+
 import com.expenses.model.GroupMember;
 
+@Component
 public interface RepositoryEssentials {
 
 	/**
