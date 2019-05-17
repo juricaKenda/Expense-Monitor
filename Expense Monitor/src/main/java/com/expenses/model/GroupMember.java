@@ -6,18 +6,26 @@ public class GroupMember implements MemberOperations{
 	private int id;
 	private Budget budget;
 	
-	/**
-	 * Creates a new group member instance
-	 * @param name - name of the member
-	 * @param id - id assigned by the generator
-	 * @param initialBudget - starting budget of this member
-	 */
-	public GroupMember(String name, int id, int initialBudget) {
+	
+	public GroupMember() {
+		this.budget = new Budget();
+	}
+	
+	
+	
+	public void setName(String name) {
 		this.name = name;
-		this.id = id;
-		this.budget = new Budget(initialBudget);
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setBudget(int budgetValue) {
+		this.budget = new Budget(budgetValue);
+	}
+
+	
 	@Override
 	public void receiveMoney(int amount) {
 		this.budget.raise(amount);		
@@ -36,5 +44,18 @@ public class GroupMember implements MemberOperations{
 	public int getMemberId() {
 		return this.id;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getBudget() {
+		return budget.getCurrentBudget();
+	}
+	
 	
 }
