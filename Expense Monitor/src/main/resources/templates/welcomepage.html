@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th = "http://www.thymeleaf.org">
 
-	<head>
-	<title>Welcome</title>
-	</head>
+<head>
+	<title>Expense management system</title>
+</head>
 	
-	<h1>Enter initial member budgets</h1>
+	<h1>Welcome!</h1>
 	
-	<form action="#" th:action="@{/table}" th:object="${stud}" method="get">
-  	<button type="submit" formaction=""> Apply </button>
+<body>
+	<h2>Enter the initial member budgets :</h2>
+	
+	<form action="#" th:action="@{/home}" th:object="${member}" method="post">
+		First name: <input type="text" th:field="*{name}" >
+		Starting budget: <input type="text" th:field="*{budget}" >
+  		<button type="submit" formaction=""> Enter data </button>
   	</form>
+
+  	
+  	<h3>Current member repository: </h3>
+  	
+  	<style>
+	table, th, td {
+  	border: 1px solid black;
+	}	
+	</style>
+	
+	
+<table>
+    <thead>
+        <tr>
+         <th> Name </th>
+         <th> Id </th>
+         <th> Budget </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="member : ${membersrepo}">
+            <td><span th:text="${member.name}"></span></td>
+            <td><span th:text="${member.id}"></span></td>
+            <td><span th:text="${member.budget}"></span></td>
+        </tr>
+    </tbody>
+</table><br>
 	  
+	<div>
+	<a href="/transactions">Start managing transactions</a>
+	</div>
+</body>
 
 </html>
