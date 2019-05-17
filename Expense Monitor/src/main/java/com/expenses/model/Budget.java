@@ -1,36 +1,47 @@
 package com.expenses.model;
 
+import com.expenses.interfaces.BudgetingEssentials;
+
 public class Budget implements BudgetingEssentials{
 
-	private int currentBudget;
+	private int balance;
 
 	public Budget() {
 		
 	}
 	
 	public Budget(int startingBudget) {
-		this.currentBudget = startingBudget;
+		this.balance = startingBudget;
 	}
 
 	@Override
 	public boolean cutback(int amount) {
-		this.currentBudget -= amount;
+		this.balance -= amount;
 		return true; 
 		//boolean return type set for later options
-		// Example : we want to forbid budgets to go above or underneath a certain limit
+		//Example : we want to forbid budgets to go above or underneath a certain limit
 	}
 
 	@Override
 	public boolean raise(int amount) {
-		this.currentBudget += amount;
+		this.balance += amount;
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return current budget of this group member
+	 */
 	public int getCurrentBudget() {
-		return currentBudget;
+		return balance;
 	}
+	
+	/**
+	 * Sets the budget of this group member
+	 * @param currentBudget
+	 */
 	public void setCurrentBudget(int currentBudget) {
-		this.currentBudget = currentBudget;
+		this.balance = currentBudget;
 	}
 	
 	

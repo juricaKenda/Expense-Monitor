@@ -2,18 +2,18 @@ package com.expenses.mockrepository;
 
 import java.util.HashMap;
 
+import com.expenses.interfaces.RepositoryEssentials;
 import com.expenses.model.GroupMember;
 
 public class MemberRepository implements RepositoryEssentials {
 
+	//Internal storage of members
 	private HashMap<Integer,GroupMember> repository = new HashMap<>();
 	
 	/**
 	 * Default constructor
 	 */
-	public MemberRepository() {
-		
-	}
+	public MemberRepository() {}
 
 	@Override
 	public void addGroupMember(GroupMember member) {

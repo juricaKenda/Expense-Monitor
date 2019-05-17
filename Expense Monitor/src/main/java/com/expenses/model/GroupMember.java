@@ -1,5 +1,7 @@
 package com.expenses.model;
 
+import com.expenses.interfaces.MemberOperations;
+
 public class GroupMember implements MemberOperations{
 
 	private String name;
