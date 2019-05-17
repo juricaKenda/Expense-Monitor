@@ -24,6 +24,14 @@ public class MemberRepository implements RepositoryEssentials {
 	public GroupMember getMemberById(int memberId) {
 		return this.repository.get(memberId);
 	}
+
+	public HashMap<Integer, GroupMember> getRepository() {
+		return repository;
+	}
+
+	public void setRepository(HashMap<Integer, GroupMember> repository) {
+		this.repository = repository;
+	}
 	
 	
 }
