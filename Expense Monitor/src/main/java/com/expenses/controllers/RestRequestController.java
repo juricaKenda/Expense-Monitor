@@ -12,6 +12,6 @@ public class RestRequestController {
 
 	@RequestMapping("/home")
 	public String welcomePage() {
-		return "welcome-page";
+		return "welcomepage";
 	}
 }
