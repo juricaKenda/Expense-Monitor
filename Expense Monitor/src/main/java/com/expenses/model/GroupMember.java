@@ -29,6 +29,12 @@ public class GroupMember implements MemberOperations{
 		return amount;
 	}
 	
-	
+	/**
+	 * 
+	 * @return Member id for further identification
+	 */
+	public int getMemberId() {
+		return this.id;
+	}
 	
 }
