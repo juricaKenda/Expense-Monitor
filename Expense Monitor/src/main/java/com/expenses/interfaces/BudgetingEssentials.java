@@ -1,4 +1,4 @@
-package com.expenses.model;
+package com.expenses.interfaces;
 
 public interface BudgetingEssentials {
 
