@@ -1,5 +1,6 @@
 package com.expenses.model;
 
+
 import com.expenses.interfaces.MemberOperations;
 
 public class GroupMember implements MemberOperations{
@@ -8,12 +9,9 @@ public class GroupMember implements MemberOperations{
 	private int id;
 	private Budget budget;
 	
-	
 	public GroupMember() {
 		this.budget = new Budget();
 	}
-	
-	
 	
 	public void setName(String name) {
 		this.name = name;
