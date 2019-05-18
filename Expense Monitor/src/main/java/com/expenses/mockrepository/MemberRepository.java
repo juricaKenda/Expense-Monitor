@@ -2,12 +2,12 @@ package com.expenses.mockrepository;
 
 import java.util.HashMap;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.expenses.interfaces.RepositoryEssentials;
 import com.expenses.model.GroupMember;
 
-@Component
+@Repository
 public class MemberRepository implements RepositoryEssentials {
 
 	//Internal storage of members
