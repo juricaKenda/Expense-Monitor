@@ -3,7 +3,6 @@ package com.expenses.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ public class RestRequestController {
 	
 	@Autowired
 	private Service expenseService;
+
 	
 	public RestRequestController(Service expenseService) {
 		this.expenseService = expenseService;
@@ -39,8 +39,7 @@ public class RestRequestController {
 		//Adding member repository for saving members and a new member instance
 		model.addAttribute("membersrepo", memberRepo.getRepository().values());
 		model.addAttribute("member", new GroupMember());
-		model.addAttribute("deletionID", this.expenseService.getDeletionID());
-		
+
 		//html located in templates folder of the project
 		return "welcomepage";
 	}
@@ -61,7 +60,7 @@ public class RestRequestController {
 		//The rest is same setup as get mapping
 		model.addAttribute("membersrepo", memberRepo.getRepository().values());
 		model.addAttribute("member", new GroupMember());
-		model.addAttribute("deletionID", this.expenseService.getDeletionID());
+
 		
 		return "welcomepage";
 	}
