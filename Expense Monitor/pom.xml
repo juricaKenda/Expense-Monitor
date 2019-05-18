@@ -15,7 +15,7 @@
 	<artifactId>Expense-Monitor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Expense Monitor</name>
-	<description>Demo project</description>
+	<description>Demo project as a job application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
