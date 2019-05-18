@@ -1,4 +1,4 @@
-package com.expenses.serviceTests;
+package com.expenses.service;
 
 public class ServiceTestConstants {
 
