@@ -20,7 +20,9 @@ public class Service implements ServiceEssentials{
 	@Autowired
 	private TransactionLog transactionLog;
 	
-	
+	public Service() {
+		
+	}
 	
 	public Service(MemberRepository memberRepo, IDgenerator generator, TransactionLog transactionLog) {
 		this.memberRepo = memberRepo;
@@ -55,6 +57,20 @@ public class Service implements ServiceEssentials{
 	public MemberRepository getRepository() {
 		return this.memberRepo;
 	}
+
+
+	public void setRepository(MemberRepository memberRepo) {
+		this.memberRepo = memberRepo;
+	}
+
+	public TransactionLog getTransactionLog() {
+		return transactionLog;
+	}
+
+	public void setTransactionLog(TransactionLog transactionLog) {
+		this.transactionLog = transactionLog;
+	}
+
 	
 	
 	
