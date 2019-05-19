@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.expenses.exceptions.InvalidTransactionException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
@@ -114,9 +115,18 @@ public class RestRequestController {
 	@PostMapping("/transactions")
 	public String addTransaction(Model model, @ModelAttribute Transaction transaction) {
 		
-		//Service performs the money transfer
-		this.expenseService.performTransaction(transaction);
 		
+		try {
+			//Service performs the money transfer
+			this.expenseService.performTransaction(transaction);
+			
+		} catch (InvalidTransactionException e) {
+			e.printStackTrace();
+			//TODO let user know the transaction went wrong
+			//TODO log
+		}
+		
+		//Enable the model make future transactions
 		MemberRepository memberRepo = this.expenseService.getRepository();
 		
 		//The rest is same setup as get mapping
