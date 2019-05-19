@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.expenses.exceptions.GroupMemberNotFoundException;
+import com.expenses.exceptions.InvalidTransactionException;
 import com.expenses.interfaces.ServiceEssentials;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
@@ -36,15 +38,23 @@ public class Service implements ServiceEssentials{
 	}
 
 	@Override
-	public void performTransaction(Transaction transaction) {
+	public void performTransaction(Transaction transaction) throws InvalidTransactionException {
 		
-		//Find the sender and receiver and perform the transaction
-		GroupMember sender = this.memberRepo.getMemberById(transaction.getSenderID());
-		GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
-		receiver.receiveMoney(sender.sendMoney(transaction.getTransactionAmount()));
+		try {
+			//Find the sender and receiver and perform the transaction
+			GroupMember sender = this.memberRepo.getMemberById(transaction.getSenderID());
+			GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
+			receiver.receiveMoney(sender.sendMoney(transaction.getTransactionAmount()));
+			
+			//Log the transaction
+			this.transactionLog.log(transaction);
+			
+		} catch (GroupMemberNotFoundException e) {
+			e.printStackTrace();
+			//TODO Log the error
+			throw new InvalidTransactionException("");
+		}
 		
-		//Log the transaction
-		this.transactionLog.log(transaction);
 	}
 
 	@Override

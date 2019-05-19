@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.expenses.exceptions.InvalidTransactionException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.Transaction;
 
@@ -18,8 +19,9 @@ public interface ServiceEssentials {
 	
 	/**
 	 * Transfers the money from one member to another
+	 * @throws InvalidTransactionException 
 	 */
-	void performTransaction(Transaction transaction);
+	void performTransaction(Transaction transaction) throws InvalidTransactionException;
 	
 	/**
 	 * 
