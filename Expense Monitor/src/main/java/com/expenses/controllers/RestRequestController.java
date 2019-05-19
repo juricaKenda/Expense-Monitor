@@ -1,5 +1,7 @@
 package com.expenses.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class RestRequestController {
 	@Autowired
 	private ExpenseService expenseService;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(RestRequestController.class);
 	
 	public RestRequestController(ExpenseService expenseService) {
 		this.expenseService = expenseService;
@@ -44,7 +47,8 @@ public class RestRequestController {
 			model.addAttribute("membersrepo", memberRepo.getRepository().values());
 			model.addAttribute("member", new GroupMember());
 		} catch (RepositoryNotInstantiatedException e) {
-			// TODO Log the error
+			//Log the error
+			LOGGER.error(e.getMessage());
 		}
 		//html located in templates folder of the project
 		return "welcomepage";
@@ -68,7 +72,8 @@ public class RestRequestController {
 			model.addAttribute("membersrepo", memberRepo.getRepository().values());
 			model.addAttribute("member", new GroupMember());
 		} catch (RepositoryNotInstantiatedException e) {
-			// TODO Log the error
+			// Log the error
+			LOGGER.error(e.getMessage());
 		}
 		
 		return "welcomepage";
@@ -84,7 +89,8 @@ public class RestRequestController {
 				return "deleteSuccessful";
 			}
 		} catch (GroupMemberNotFoundException e) {
-			// TODO log the error
+			// Log the error
+			LOGGER.error(e.getMessage());
 		}
 		return "deleteUnsuccessful";
 	}
@@ -121,7 +127,8 @@ public class RestRequestController {
 			model.addAttribute("membersrepo", memberRepo.getRepository().values());
 			
 		} catch (RepositoryNotInstantiatedException e) {
-			// TODO Log the error
+			//Log the error
+			LOGGER.error(e.getMessage());
 		}
 		
 		//html located in templates folder of the project
@@ -139,7 +146,8 @@ public class RestRequestController {
 			
 		} catch (InvalidTransactionException e) {
 			//TODO let user know the transaction went wrong
-			//TODO log
+			//Log the error
+			LOGGER.error(e.getMessage());
 		}
 		
 		//Enable the model make future transactions
@@ -152,7 +160,8 @@ public class RestRequestController {
 			model.addAttribute("membersrepo", memberRepo.getRepository().values());
 			
 		} catch (RepositoryNotInstantiatedException e) {
-			// TODO Log the error
+			//Log the error
+			LOGGER.error(e.getMessage());
 		}
 		
 		return "transactions";
