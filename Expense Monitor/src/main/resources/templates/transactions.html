@@ -11,7 +11,7 @@
 	}	
 	</style>
 	
-	<h1>Perform a new transaction</h1>
+<h1>Perform a new transaction : </h1>
 	
 	<form action="#" th:action="@{/transaction}" th:object="${transaction}" method="post">
 		Sender ID: <input type="text" th:field="*{senderID}" >
@@ -20,44 +20,42 @@
   		<button type="submit" formaction=""> Enter data </button>
   	</form>
 	
-	<h1>Current member balance:</h1>
+	
+<h1>Current member balance :</h1>
 	<table>
-    <thead>
-        <tr>
-         <th> Name </th>
-         <th> Id </th>
-         <th> Budget </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="member : ${membersrepo}">
-            <td><span th:text="${member.name}"></span></td>
-            <td><span th:text="${member.id}"></span></td>
-            <td><span th:text="${member.budget}"></span></td>
-        </tr>
-    </tbody>
-</table><br>
+    	<thead>
+        	<tr>
+        		<th> Name </th>
+         		<th> Id </th>
+         		<th> Budget </th>
+        	</tr>
+    	</thead>
+    	<tbody>
+        	<tr th:each="member : ${membersrepo}">
+            	<td><span th:text="${member.name}"></span></td>
+            	<td><span th:text="${member.id}"></span></td>
+           		<td><span th:text="${member.budget}"></span></td>
+        	</tr>
+    	</tbody>
+	</table><br>
 	
 	
-	
-	
-	<h1>List of performed transactions</h1>
-	
+<h1>List of performed transactions : </h1>
 	<table>
-    <thead>
-        <tr>
-         <th> From ID </th>
-         <th> To ID </th>
-         <th> Transaction Amount </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="transaction : ${allTransactions}">
-            <td><span th:text="${transaction.senderID}"></span></td>
-            <td><span th:text="${transaction.receiverID}"></span></td>
-            <td><span th:text="${transaction.transactionAmount}"></span></td>
-        </tr>
-    </tbody>
-</table><br>
+    	<thead>
+        	<tr>
+         		<th> Sender ID </th>
+         		<th> Receiver ID </th>
+         		<th> Transaction Amount </th>
+        	</tr>
+    	</thead>
+    	<tbody>
+        	<tr th:each="transaction : ${allTransactions}">
+            	<td><span th:text="${transaction.senderID}"></span></td>
+            	<td><span th:text="${transaction.receiverID}"></span></td>
+            	<td><span th:text="${transaction.transactionAmount}"></span></td>
+        	</tr>
+    	</tbody>
+	</table><br>
 
 </html>
