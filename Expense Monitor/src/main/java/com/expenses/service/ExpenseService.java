@@ -14,7 +14,7 @@ import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
 
 @Component
-public class Service implements ServiceEssentials{
+public class ExpenseService implements ServiceEssentials{
 
 	@Autowired
 	private MemberRepository memberRepo; //Repository for all members in a group
@@ -23,11 +23,11 @@ public class Service implements ServiceEssentials{
 	@Autowired
 	private TransactionLog transactionLog;
 	
-	public Service() {
+	public ExpenseService() {
 		
 	}
 	
-	public Service(MemberRepository memberRepo, GroupMemberIDgenerator generator, TransactionLog transactionLog) {
+	public ExpenseService(MemberRepository memberRepo, GroupMemberIDgenerator generator, TransactionLog transactionLog) {
 		this.memberRepo = memberRepo;
 		this.generator = generator;
 		this.transactionLog = transactionLog;

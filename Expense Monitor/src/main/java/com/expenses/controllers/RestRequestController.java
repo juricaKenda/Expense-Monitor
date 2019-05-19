@@ -14,16 +14,16 @@ import com.expenses.exceptions.RepositoryNotInstantiatedException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
-import com.expenses.service.Service;
+import com.expenses.service.ExpenseService;
 
 @Controller
 public class RestRequestController {
 	
 	@Autowired
-	private Service expenseService;
+	private ExpenseService expenseService;
 
 	
-	public RestRequestController(Service expenseService) {
+	public RestRequestController(ExpenseService expenseService) {
 		this.expenseService = expenseService;
 	}
 

@@ -9,17 +9,17 @@ import com.expenses.exceptions.InvalidTransactionException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
-import com.expenses.service.Service;
+import com.expenses.service.ExpenseService;
 import com.expenses.service.TransactionLog;
 
 public class ServiceTests {
 
-	private static Service serviceInstance;
+	private static ExpenseService serviceInstance;
 	
 	
 	@BeforeClass
 	public static void setup() {
-		serviceInstance = new Service();
+		serviceInstance = new ExpenseService();
 		serviceInstance.setRepository(new MemberRepository());
 		serviceInstance.setTransactionLog(new TransactionLog());
 	}
