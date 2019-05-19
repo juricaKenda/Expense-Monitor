@@ -2,6 +2,8 @@ package com.expenses.mockrepository;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.expenses.exceptions.ErrorMessages;
@@ -10,11 +12,14 @@ import com.expenses.exceptions.RepositoryNotInstantiatedException;
 import com.expenses.interfaces.RepositoryEssentials;
 import com.expenses.model.GroupMember;
 
+
 @Repository
 public class MemberRepository implements RepositoryEssentials {
 
 	//Internal storage of members
 	private HashMap<Integer,GroupMember> repository = new HashMap<>();
+	private static final Logger LOGGER = LoggerFactory.getLogger(MemberRepository.class);
+	
 	
 	/**
 	 * Default constructor
@@ -28,13 +33,16 @@ public class MemberRepository implements RepositoryEssentials {
 
 	@Override
 	public GroupMember getMemberById(int memberId) throws GroupMemberNotFoundException {
-		
+		//Try to fetch the member
 		GroupMember member = this.repository.get(memberId);
 		if(member != null) {
 			return member;
 		}
 		
-		throw new GroupMemberNotFoundException(ErrorMessages.MEMBER_NOT_FOUND_MESSAGE);
+		//Log and throw the error
+		GroupMemberNotFoundException groupMemberError = new GroupMemberNotFoundException(ErrorMessages.MEMBER_NOT_FOUND_MESSAGE);
+		LOGGER.error(groupMemberError.getMessage());
+		throw groupMemberError;
 	}
 
 	@SuppressWarnings("unused")
@@ -45,8 +53,10 @@ public class MemberRepository implements RepositoryEssentials {
 			HashMap<Integer, GroupMember> repository = this.repository;
 			
 		}catch(NullPointerException e) {
-			//Log the error
-			throw new RepositoryNotInstantiatedException(ErrorMessages.REPOSITORY_NOT_INSTANTIATED);
+			//Log and throw the error
+			RepositoryNotInstantiatedException repositoryError = new RepositoryNotInstantiatedException(ErrorMessages.REPOSITORY_NOT_INSTANTIATED);
+			LOGGER.error(repositoryError.getMessage());
+			throw repositoryError;
 		}	
 		
 		return repository;
@@ -64,8 +74,10 @@ public class MemberRepository implements RepositoryEssentials {
 			this.repository.remove(memberId);
 			return true;
 		}
-		
-		throw new GroupMemberNotFoundException(ErrorMessages.MEMBER_NOT_FOUND_MESSAGE);
+		//Log and throw the error
+		GroupMemberNotFoundException groupMemberError = new GroupMemberNotFoundException(ErrorMessages.MEMBER_NOT_FOUND_MESSAGE);
+		LOGGER.error(groupMemberError.getMessage());
+		throw groupMemberError;
 	}
 
 	@Override
