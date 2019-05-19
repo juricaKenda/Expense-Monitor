@@ -1,3 +1,4 @@
+package com.expense.serviceTests;
 //package com.expenses.serviceTests;
 //
 //import static org.junit.Assert.assertEquals;

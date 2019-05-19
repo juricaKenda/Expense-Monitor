@@ -1,4 +1,4 @@
-package com.expenses.controllers;
+package com.expenses.restControllerTests;
 //
 //import org.junit.Before;
 //import org.junit.Test;
