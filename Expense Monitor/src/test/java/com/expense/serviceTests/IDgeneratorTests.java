@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.expenses.service.IDgenerator;
+import com.expenses.service.GroupMemberIDgenerator;
 
 public class IDgeneratorTests {
 
-	private static IDgenerator generator;
+	private static GroupMemberIDgenerator generator;
 	private static final int TEST_QUANTITY = 100;
 	
 	@Before
 	public void setup() {
-		generator = new IDgenerator();
+		generator = new GroupMemberIDgenerator();
 	}
 	
 	

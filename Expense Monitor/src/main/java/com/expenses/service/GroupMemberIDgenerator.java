@@ -3,7 +3,7 @@ package com.expenses.service;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IDgenerator {
+public class GroupMemberIDgenerator {
 
 	private int idCount = 0;
 	

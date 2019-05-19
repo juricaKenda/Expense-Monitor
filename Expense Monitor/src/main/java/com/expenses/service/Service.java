@@ -19,7 +19,7 @@ public class Service implements ServiceEssentials{
 	@Autowired
 	private MemberRepository memberRepo; //Repository for all members in a group
 	@Autowired
-	private IDgenerator generator; //ID generator used while creating each member
+	private GroupMemberIDgenerator generator; //ID generator used while creating each member
 	@Autowired
 	private TransactionLog transactionLog;
 	
@@ -27,7 +27,7 @@ public class Service implements ServiceEssentials{
 		
 	}
 	
-	public Service(MemberRepository memberRepo, IDgenerator generator, TransactionLog transactionLog) {
+	public Service(MemberRepository memberRepo, GroupMemberIDgenerator generator, TransactionLog transactionLog) {
 		this.memberRepo = memberRepo;
 		this.generator = generator;
 		this.transactionLog = transactionLog;
