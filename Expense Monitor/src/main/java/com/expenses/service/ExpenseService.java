@@ -51,7 +51,14 @@ public class ExpenseService implements ServiceEssentials{
 			 * and it is redundant to make any repository requests for it 
 			 */
 			if(transaction.getSenderID() == transaction.getReceiverID()) {
-				throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
+				throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_REFLECTIVE);
+			}
+			
+			/*
+			 * Transaction with amount <= 0 is also invalid and should not be performed
+			 */
+			if(transaction.getTransactionAmount() <= 0) {
+				throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_AMOUNT);
 			}
 			
 			//Find the sender and receiver and perform the transaction
@@ -65,7 +72,7 @@ public class ExpenseService implements ServiceEssentials{
 		} catch (GroupMemberNotFoundException | InvalidTransactionException e) {
 			//TODO Log the error and forward it
 			LOGGER.error(e.getMessage());
-			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
+			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_DEFAULT);
 		}
 		
 	}
