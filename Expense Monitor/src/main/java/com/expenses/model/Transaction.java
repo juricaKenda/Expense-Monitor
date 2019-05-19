@@ -4,7 +4,6 @@ public class Transaction {
 
 	private int senderID,receiverID;
 	private int transactionAmount;
-	private int transactionID; //TODO create transaction ID generator
 	
 	
 	public Transaction() {
