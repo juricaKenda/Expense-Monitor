@@ -2,6 +2,8 @@ package com.expenses.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +24,8 @@ public class ExpenseService implements ServiceEssentials{
 	private GroupMemberIDgenerator generator; //ID generator used while creating each member
 	@Autowired
 	private TransactionLog transactionLog;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExpenseService.class);
 	
 	public ExpenseService() {
 		
@@ -60,6 +64,7 @@ public class ExpenseService implements ServiceEssentials{
 			
 		} catch (GroupMemberNotFoundException | InvalidTransactionException e) {
 			//TODO Log the error and forward it
+			LOGGER.error(e.getMessage());
 			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
 		}
 		
