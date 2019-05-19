@@ -12,7 +12,6 @@ public class ErrorHandlerController {
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	@ExceptionHandler(Exception.class)
 	public ModelAndView respond(){
-		String answer = "errorpage";
-		return new ModelAndView(answer);
+		return new ModelAndView("errorpage");
 	}
 }

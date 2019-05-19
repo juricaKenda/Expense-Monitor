@@ -1,5 +1,6 @@
 package com.expenses.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Component;
 import com.expenses.exceptions.ErrorMessages;
 import com.expenses.exceptions.GroupMemberNotFoundException;
 import com.expenses.exceptions.InvalidTransactionException;
+import com.expenses.exceptions.RepositoryNotInstantiatedException;
 import com.expenses.interfaces.ServiceEssentials;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
+import com.expenses.model.TransactionConstants;
 
 @Component
 public class ExpenseService implements ServiceEssentials{
@@ -35,6 +38,7 @@ public class ExpenseService implements ServiceEssentials{
 		this.memberRepo = memberRepo;
 		this.generator = generator;
 		this.transactionLog = transactionLog;
+		
 	}
 
 	@Override
@@ -64,13 +68,13 @@ public class ExpenseService implements ServiceEssentials{
 			//Find the sender and receiver and perform the transaction
 			GroupMember sender = this.memberRepo.getMemberById(transaction.getSenderID());
 			GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
-			receiver.receiveMoney(sender.sendMoney(transaction.getTransactionAmount()));
+			receiver.raiseDebt(sender.cutbackDebt(transaction.getTransactionAmount()));
 			
 			//Log the transaction
 			this.transactionLog.log(transaction);
 			
 		} catch (GroupMemberNotFoundException | InvalidTransactionException e) {
-			//TODO Log the error and forward it
+			//Log the error and forward it
 			LOGGER.error(e.getMessage());
 			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_DEFAULT);
 		}
@@ -101,8 +105,55 @@ public class ExpenseService implements ServiceEssentials{
 		this.transactionLog = transactionLog;
 	}
 
-	
-	
-	
+	@Override
+	public void performOutterTransaction(Transaction transaction) {
+
+		try {
+			//Calculate group size and proper money distribution
+			int groupSize = this.memberRepo.getRepository().size();
+			int splitAmount= transaction.getTransactionAmount() / groupSize;
+			HashMap<Integer,GroupMember> entireGroup = this.memberRepo.getRepository();
+			
+			//Figure out if a member is sending or receiving
+			if(transaction.getSenderID() == TransactionConstants.OUTTER_TRANSACTION_ID) {
+				//Member is receiving, validate the member
+				GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
+				
+				//Perform the transaction
+				receiver.raiseDebt(transaction.getTransactionAmount()+splitAmount);
+				
+				//Now we log other people's debts
+				for(GroupMember eachOther : entireGroup.values()) {
+		
+					if(eachOther.getId() != receiver.getId()) {
+						eachOther.cutbackDebt(splitAmount);
+					}
+				}
+			
+			}else {
+				//Member is sending, validate the member
+				GroupMember sender = this.memberRepo.getMemberById(transaction.getSenderID());
+				
+				//Perform the transaction
+				sender.cutbackDebt(transaction.getTransactionAmount()-splitAmount);
+				
+				//Now we log other people's debts
+				for(GroupMember eachOther : entireGroup.values()) {
+		
+					if(eachOther.getId() != sender.getId()) {
+						eachOther.raiseDebt(splitAmount);
+					}
+				}
+			}
+			
+			this.transactionLog.log(transaction);
+			
+			
+		} catch (RepositoryNotInstantiatedException | GroupMemberNotFoundException e) {
+			LOGGER.error(e.getMessage());
+		} 
+		
+	}
+
 	
 }
