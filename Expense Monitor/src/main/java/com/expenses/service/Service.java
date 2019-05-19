@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.expenses.exceptions.ErrorMessages;
 import com.expenses.exceptions.GroupMemberNotFoundException;
 import com.expenses.exceptions.InvalidTransactionException;
 import com.expenses.interfaces.ServiceEssentials;
@@ -52,7 +53,7 @@ public class Service implements ServiceEssentials{
 		} catch (GroupMemberNotFoundException e) {
 			e.printStackTrace();
 			//TODO Log the error
-			throw new InvalidTransactionException("");
+			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
 		}
 		
 	}
