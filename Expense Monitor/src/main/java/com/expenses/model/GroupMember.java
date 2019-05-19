@@ -27,13 +27,13 @@ public class GroupMember implements MemberOperations{
 
 	
 	@Override
-	public void receiveMoney(int amount) {
-		this.budget.raise(amount);		
+	public void raiseDebt(int amount) {
+		this.budget.raiseDebt(amount);		
 	}
 
 	@Override
-	public int sendMoney(int amount) {
-		this.budget.cutback(amount);
+	public int cutbackDebt(int amount) {
+		this.budget.cutbackDebt(amount);
 		return amount;
 	}
 	
