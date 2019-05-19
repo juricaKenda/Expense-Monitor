@@ -51,7 +51,6 @@ public class Service implements ServiceEssentials{
 			this.transactionLog.log(transaction);
 			
 		} catch (GroupMemberNotFoundException e) {
-			e.printStackTrace();
 			//TODO Log the error
 			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
 		}
