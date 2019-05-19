@@ -27,8 +27,9 @@ public interface RepositoryEssentials {
 	 * Searches for a member with a given ID and deletes him
 	 * @param memberId identification number of a particular member
 	 * @return true if a member was found and deleted
+	 * @throws GroupMemberNotFoundException 
 	 */
-	boolean deleteMemberById(int memberId);
+	boolean deleteMemberById(int memberId) throws GroupMemberNotFoundException;
 	
 	/**
 	 * Clears all repository entries
