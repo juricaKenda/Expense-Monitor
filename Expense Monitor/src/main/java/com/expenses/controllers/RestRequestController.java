@@ -16,6 +16,7 @@ import com.expenses.exceptions.RepositoryNotInstantiatedException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
+import com.expenses.model.TransactionConstants;
 import com.expenses.service.ExpenseService;
 
 @Controller
@@ -139,17 +140,23 @@ public class RestRequestController {
 	@PostMapping("/transactions")
 	public String addTransaction(Model model, @ModelAttribute Transaction transaction) {
 		
-		
-		try {
-			//Service performs the money transfer
-			this.expenseService.performTransaction(transaction);
+			if(transaction.getReceiverID() == TransactionConstants.OUTTER_TRANSACTION_ID 
+					|| transaction.getSenderID() == TransactionConstants.OUTTER_TRANSACTION_ID) {
+				
+				this.expenseService.performOutterTransaction(transaction);
+				
+			}else {
+				// If the transaction is member to member type
+				try {
+					//Service performs the money transfer
+					this.expenseService.performTransaction(transaction);
+					
+				} catch (InvalidTransactionException e) {
+					//Log the error
+					LOGGER.error(e.getMessage());
+				}
+			}
 			
-		} catch (InvalidTransactionException e) {
-			//TODO let user know the transaction went wrong
-			//Log the error
-			LOGGER.error(e.getMessage());
-		}
-		
 		//Enable the model make future transactions
 		MemberRepository memberRepo = this.expenseService.getRepository();
 		
@@ -163,6 +170,7 @@ public class RestRequestController {
 			//Log the error
 			LOGGER.error(e.getMessage());
 		}
+		
 		
 		return "transactions";
 	}

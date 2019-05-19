@@ -34,4 +34,7 @@ public interface ServiceEssentials {
 	 * @return the repository containing all members
 	 */
 	MemberRepository getRepository();
+	
+	
+	void performOutterTransaction(Transaction outsideTransaction);
 }
