@@ -2,6 +2,7 @@ package com.expenses.interfaces;
 
 import org.springframework.stereotype.Component;
 
+import com.expenses.exceptions.GroupMemberNotFoundException;
 import com.expenses.model.GroupMember;
 
 @Component
@@ -17,8 +18,9 @@ public interface RepositoryEssentials {
 	 * Searches for a member with a given ID and returns him
 	 * @param memberId identification number of a particular member
 	 * @return a member if found
+	 * @throws GroupMemberNotFoundException
 	 */
-	GroupMember getMemberById(int memberId);
+	GroupMember getMemberById(int memberId) throws GroupMemberNotFoundException;
 	
 	
 	/**

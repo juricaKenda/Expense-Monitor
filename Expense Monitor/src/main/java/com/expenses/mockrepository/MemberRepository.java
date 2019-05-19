@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
+import com.expenses.exceptions.GroupMemberNotFoundException;
 import com.expenses.interfaces.RepositoryEssentials;
 import com.expenses.model.GroupMember;
 
@@ -24,9 +25,14 @@ public class MemberRepository implements RepositoryEssentials {
 	}
 
 	@Override
-	public GroupMember getMemberById(int memberId) {
-		//TODO Handle user not found exception
-		return this.repository.get(memberId);
+	public GroupMember getMemberById(int memberId) throws GroupMemberNotFoundException {
+		
+		GroupMember member = this.repository.get(memberId);
+		if(member != null) {
+			return member;
+		}
+		
+		throw new GroupMemberNotFoundException("Group member with ID :" + memberId + " was not found in the repository!");
 	}
 
 	public HashMap<Integer, GroupMember> getRepository() {
