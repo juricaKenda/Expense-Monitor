@@ -7,7 +7,7 @@ public interface BudgetingEssentials {
 	 * @param amount in which the balance will be affected
 	 * @return true if the cutback was successful, false otherwise
 	 */
-	boolean cutback(int amount);
+	boolean cutbackDebt(int amount);
 	
 	
 	/**
@@ -15,5 +15,5 @@ public interface BudgetingEssentials {
 	 * @param amount in which the balance will be affected
 	 * @return true if the raise was successful, false otherwise
 	 */
-	boolean raise(int amount);
+	boolean raiseDebt(int amount);
 }

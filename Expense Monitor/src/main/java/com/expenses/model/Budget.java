@@ -18,16 +18,16 @@ public class Budget implements BudgetingEssentials{
 	}
 
 	@Override
-	public boolean cutback(int amount) {
-		this.balance -= amount;
+	public boolean cutbackDebt(int amount) {
+		this.balance += amount;
 		return true; 
 		//boolean return type set for later options
 		//Example : we want to forbid budgets to go above or underneath a certain limit
 	}
 
 	@Override
-	public boolean raise(int amount) {
-		this.balance += amount;
+	public boolean raiseDebt(int amount) {
+		this.balance -= amount;
 		return true;
 	}
 
