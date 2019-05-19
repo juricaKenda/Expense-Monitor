@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.expenses.exceptions.GroupMemberNotFoundException;
 import com.expenses.exceptions.InvalidTransactionException;
+import com.expenses.exceptions.RepositoryNotInstantiatedException;
 import com.expenses.mockrepository.MemberRepository;
 import com.expenses.model.GroupMember;
 import com.expenses.model.Transaction;
@@ -38,9 +40,13 @@ public class RestRequestController {
 		MemberRepository memberRepo = this.expenseService.getRepository();
 		
 		//Adding member repository for saving members and a new member instance
-		model.addAttribute("membersrepo", memberRepo.getRepository().values());
-		model.addAttribute("member", new GroupMember());
-
+		try {
+			model.addAttribute("membersrepo", memberRepo.getRepository().values());
+			model.addAttribute("member", new GroupMember());
+		} catch (RepositoryNotInstantiatedException e) {
+			// TODO Log the error
+			e.printStackTrace();
+		}
 		//html located in templates folder of the project
 		return "welcomepage";
 	}
@@ -59,9 +65,13 @@ public class RestRequestController {
 		memberRepo.addGroupMember(member);
 		
 		//The rest is same setup as get mapping
-		model.addAttribute("membersrepo", memberRepo.getRepository().values());
-		model.addAttribute("member", new GroupMember());
-
+		try {
+			model.addAttribute("membersrepo", memberRepo.getRepository().values());
+			model.addAttribute("member", new GroupMember());
+		} catch (RepositoryNotInstantiatedException e) {
+			// TODO Log the error
+			e.printStackTrace();
+		}
 		
 		return "welcomepage";
 	}
@@ -71,8 +81,13 @@ public class RestRequestController {
 	public String deleteById(@PathVariable int id) {
 		
 		MemberRepository memberRepo = this.expenseService.getRepository();
-		if(memberRepo.deleteMemberById(id)) {
-			return "deleteSuccessful";
+		try {
+			if(memberRepo.deleteMemberById(id)) {
+				return "deleteSuccessful";
+			}
+		} catch (GroupMemberNotFoundException e) {
+			// TODO log the error
+			e.printStackTrace();
 		}
 		return "deleteUnsuccessful";
 	}
@@ -102,10 +117,16 @@ public class RestRequestController {
 		 * Adding transaction log for displaying transactions,
 		 * all group members 
 		 * and a new transaction instance
-		 */
-		model.addAttribute("allTransactions", this.expenseService.getAllTransactions());
-		model.addAttribute("transaction", new Transaction());
-		model.addAttribute("membersrepo",memberRepo.getRepository().values());
+		 */	
+		try {
+			model.addAttribute("allTransactions", this.expenseService.getAllTransactions());
+			model.addAttribute("transaction", new Transaction());
+			model.addAttribute("membersrepo", memberRepo.getRepository().values());
+			
+		} catch (RepositoryNotInstantiatedException e) {
+			// TODO Log the error
+			e.printStackTrace();
+		}
 		
 		//html located in templates folder of the project
 		return "transactions";
@@ -130,9 +151,15 @@ public class RestRequestController {
 		MemberRepository memberRepo = this.expenseService.getRepository();
 		
 		//The rest is same setup as get mapping
-		model.addAttribute("allTransactions", this.expenseService.getAllTransactions());
-		model.addAttribute("transaction", new Transaction());
-		model.addAttribute("membersrepo",memberRepo.getRepository().values());
+		try {
+			model.addAttribute("allTransactions", this.expenseService.getAllTransactions());
+			model.addAttribute("transaction", new Transaction());
+			model.addAttribute("membersrepo", memberRepo.getRepository().values());
+			
+		} catch (RepositoryNotInstantiatedException e) {
+			// TODO Log the error
+			e.printStackTrace();
+		}
 		
 		return "transactions";
 	}
