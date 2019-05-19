@@ -11,4 +11,8 @@ public class ServiceTestConstants {
 	public static final int mockedTransactionAmount = 5;
 	
 	
+	public static final int unsavedSenderID = 7;
+	public static final int unsavedReceiverID = 8;
+	
+	
 }

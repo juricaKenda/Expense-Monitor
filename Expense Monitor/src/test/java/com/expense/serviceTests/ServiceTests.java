@@ -58,6 +58,19 @@ public class ServiceTests {
 		
 	}
 	
+	
+	/**
+	 * Tests if a certainly invalid transaction will throw a proper exception
+	 * @throws InvalidTransactionException
+	 */
+	@Test(expected = InvalidTransactionException.class)
+	public void testInvalidTransactionException() throws InvalidTransactionException {
+	
+		//No import of sender and receiver
+		Transaction transaction = new Transaction(ServiceTestConstants.unsavedSenderID, ServiceTestConstants.unsavedReceiverID, ServiceTestConstants.mockedTransactionAmount);
+		serviceInstance.performTransaction(transaction);
+	}
+	
 	/**
 	 * Transaction log size should linearly follow
 	 * the amount of transactions performed
