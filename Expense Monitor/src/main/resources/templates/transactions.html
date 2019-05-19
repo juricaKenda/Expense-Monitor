@@ -12,14 +12,15 @@
 	</style>
 	
 <h1>Perform a new transaction : </h1>
-	
+<h3>ID = 100 for transactions coming from outside , eg. someone is receiving the payment for the entire group..</h3>
+
 	<form action="#" th:action="@{/transaction}" th:object="${transaction}" method="post">
 		Sender ID: <input type="text" th:field="*{senderID}" >
 		Receiver ID: <input type="text" th:field="*{receiverID}" >
 		Amount: <input type="text" th:field="*{transactionAmount}" >
   		<button type="submit" formaction=""> Enter data </button>
   	</form>
-	
+
 	
 <h1>Current member balance :</h1>
 	<table>
