@@ -42,6 +42,14 @@ public class Service implements ServiceEssentials{
 	public void performTransaction(Transaction transaction) throws InvalidTransactionException {
 		
 		try {
+			/*
+			 * Transaction from one sender to himself is invalid by default
+			 * and it is redundant to make any repository requests for it 
+			 */
+			if(transaction.getSenderID() == transaction.getReceiverID()) {
+				throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
+			}
+			
 			//Find the sender and receiver and perform the transaction
 			GroupMember sender = this.memberRepo.getMemberById(transaction.getSenderID());
 			GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
@@ -50,8 +58,8 @@ public class Service implements ServiceEssentials{
 			//Log the transaction
 			this.transactionLog.log(transaction);
 			
-		} catch (GroupMemberNotFoundException e) {
-			//TODO Log the error
+		} catch (GroupMemberNotFoundException | InvalidTransactionException e) {
+			//TODO Log the error and forward it
 			throw new InvalidTransactionException(ErrorMessages.INVALID_TRANSACTION_MESSAGE);
 		}
 		

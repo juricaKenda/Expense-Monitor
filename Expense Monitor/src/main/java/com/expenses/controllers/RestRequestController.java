@@ -45,7 +45,6 @@ public class RestRequestController {
 			model.addAttribute("member", new GroupMember());
 		} catch (RepositoryNotInstantiatedException e) {
 			// TODO Log the error
-			e.printStackTrace();
 		}
 		//html located in templates folder of the project
 		return "welcomepage";
@@ -70,7 +69,6 @@ public class RestRequestController {
 			model.addAttribute("member", new GroupMember());
 		} catch (RepositoryNotInstantiatedException e) {
 			// TODO Log the error
-			e.printStackTrace();
 		}
 		
 		return "welcomepage";
@@ -87,7 +85,6 @@ public class RestRequestController {
 			}
 		} catch (GroupMemberNotFoundException e) {
 			// TODO log the error
-			e.printStackTrace();
 		}
 		return "deleteUnsuccessful";
 	}
@@ -125,7 +122,6 @@ public class RestRequestController {
 			
 		} catch (RepositoryNotInstantiatedException e) {
 			// TODO Log the error
-			e.printStackTrace();
 		}
 		
 		//html located in templates folder of the project
@@ -142,7 +138,6 @@ public class RestRequestController {
 			this.expenseService.performTransaction(transaction);
 			
 		} catch (InvalidTransactionException e) {
-			e.printStackTrace();
 			//TODO let user know the transaction went wrong
 			//TODO log
 		}
@@ -158,7 +153,6 @@ public class RestRequestController {
 			
 		} catch (RepositoryNotInstantiatedException e) {
 			// TODO Log the error
-			e.printStackTrace();
 		}
 		
 		return "transactions";
