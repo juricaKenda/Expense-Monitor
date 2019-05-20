@@ -65,6 +65,7 @@ After running the main method, Spring Boot will deploy the Spring Boot applicati
 * **mock repository** - data storage, that acts as a database
 * **user defined exceptions** - application specific exceptions 
 * **tests** - unit tests for important business layer components
+* **logging** - logs errors, info messages and warnings to the console
 
 
 ## 1) Interfaces 
@@ -139,4 +140,13 @@ Although I did not provide a solution to this issue, I reckognize potential solu
 * *getAllTransactionsTest()* - tests if the transaction logger is working properly
 
 **IDgeneratorTests :**
-* *testAllUnique()* - tests if a requested amount of IDs will be distinct and unique
+* *testAllUnique()* - tests if a requested amount of IDs will be distinct and unique  
+
+## 8) Logging
+For logging purposes I used SLF4J (The Simple Logging Facade for Java), as it formats the logging messages in the same way as Spring Boot logger.  
+
+Here is an example of what a logged error will look like :  
+
+![](/Visuals/errorLog.png)
+
+
