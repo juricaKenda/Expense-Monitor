@@ -122,7 +122,7 @@ public class ExpenseService implements ServiceEssentials{
 				GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
 				
 				//Perform the transaction
-				receiver.raiseDebt(transaction.getTransactionAmount()+splitAmount);
+				receiver.raiseDebt(transaction.getTransactionAmount()- splitAmount);
 				
 				//Now we log other people's debts
 				for(GroupMember eachOther : entireGroup.values()) {
