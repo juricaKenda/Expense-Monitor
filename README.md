@@ -5,7 +5,7 @@
 * Trying out the service (with steps)  
 * Structure of the service and the code (components, tests, interaction..)
 
-## About the service
+# About the service
 This **REST service** is made to **track financial transactions and debts** between **members of a group**. Each group member starts off with an initial amount of debt on his account budget. Whether that amount is positive or negative (debt towards other members) is irrelevant.  
 
 Only important thing is that the **group total is equal to zero**. The moment when all group members have zero balance, is the moment when no one has extra "group money" and no one is owed any money.
@@ -22,7 +22,7 @@ To whom they owe it, it does not intrest us.
 ### An important note:
 The **service does not track who owes what to whom**, it only **tracks the debt towards the group** of each group member **and their transactions** as means of balancing their debts as a group.
 
-## Trying out the service
+# Trying out the service
 ### Spring Boot Maven project
 To test this REST service directly on your localhost, download the entire project and import it into your IDE as an existing Maven project.  
 After running the main method, Spring Boot will deploy the Spring Boot application in Tomcat web server.
@@ -56,7 +56,7 @@ After running the main method, Spring Boot will deploy the Spring Boot applicati
 ![](/Visuals/MVCStructure.png)
 
 
-## Code structure - elements
+# Code structure - elements
 
 * **interfaces** - govern the interaction between all components
 * **controllers** - provide REST endpoint mappings and error mappings
@@ -125,9 +125,9 @@ After running the main method, Spring Boot will deploy the Spring Boot applicati
 
 ## 7) Tests
 **ServiceTests :** 
-* performTransactionTest() - tests if a valid transaction results with a valid and expected outcome
-* testInvalidTransactionException() - tests if an invalid transaction throws an expected exception
-* getAllTransactionsTest() - tests if the transaction logger is working properly
+* *performTransactionTest()* - tests if a valid transaction results with a valid and expected outcome
+* *testInvalidTransactionException()* - tests if an invalid transaction throws an expected exception
+* *getAllTransactionsTest()* - tests if the transaction logger is working properly
 
 **IDgeneratorTests :**
-* testAllUnique() - tests if a requested amount of IDs will be distinct and unique
+* *testAllUnique()* - tests if a requested amount of IDs will be distinct and unique
