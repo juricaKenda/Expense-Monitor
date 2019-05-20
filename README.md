@@ -119,8 +119,10 @@ After running the main method, Spring Boot will deploy the Spring Boot applicati
 * provides the expense service with some basic operations such as : registry of new members, fetching and deletion of members by their ID
 
 ## 6) Application specific exceptions
-**GroupMemberNotFoundException** - occurs when a member with a given ID is not found in the repository
-**InvalidTransactionException** - occurs when something is wrong about the transaction; invalid transaction amount, invalid group member IDs, attempt of a reflective transaction..
+**GroupMemberNotFoundException** - occurs when a member with a given ID is not found in the repository  
+
+**InvalidTransactionException** - occurs when something is wrong about the transaction; invalid transaction amount, invalid group member IDs, attempt of a reflective transaction.. 
+
 **RepositoryNotInstantiatedException** - occurs when a component tries to access uninstantiated repository
 
 ## 7) Tests
