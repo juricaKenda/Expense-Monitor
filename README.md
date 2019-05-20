@@ -83,6 +83,13 @@ After running the main method, Spring Boot will deploy the Spring Boot applicati
 * makes sure the proper html file is displayed to the user
 * sets up the model parameters for creating POJOs from user's interaction with the html templates
 
+*Additional notes for CRUD operations :  
+deletion of one member can be done by accessing the endpoint :  http://localhost:8080/deleteMember/{id}  
+deletion of all members can be done by accessing the endpoint :  http://localhost:8080/deleteAll  
+If a member is deleted after some transactions had been done, his ID will not disappear from the transactions and budgets of other group members will no longer be valid.  
+Although I did not provide a solution to this issue, I reckognize potential solutions like : cascade deletion, operation restriction, and implementation of an algorithm that will re-evaluate all budgets accordingly*
+
+
 **ErrorHandlerController :** 
 * handles the errors that are caught by the controller layer of the application logic (eg. invalid inputs into input fields)
 * since the UI was not focal point of this project, this controller redirects the user to a page indicating something went wrong, it does not give any additional info about what exactly went wrong and how to repair it
