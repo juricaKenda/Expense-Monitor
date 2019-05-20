@@ -13,10 +13,11 @@ Only important thing is that the **group total is equal to zero**. The moment wh
 
 ### Example:
 * **Frank's budget** displays :  **100**
-* **Mark's budget** displays : **-50**
-* **Joe's budget** displays : **-50** 
+* **Mark's budget** displays : **-30**
+* **Joe's budget** displays : **-70** 
 
-This **indicates Frank is owed 50 (money units) each by Mark and Joe **.
+This **indicates Frank is owed 100 (money units), Mark owes 30 (money units), and Joe owes 70 (money units)**.
+To whom they owe it, it does not intrest us.
 
 ### An important note:
 The **service does not track who owes what to whom**, it only **tracks the debt towards the group** of each group member **and their transactions** as means of balancing their debts as a group.
