@@ -1,6 +1,6 @@
 package com.expenses.interfaces;
 
-public interface MemberOperations {
+public interface MemberEssentials {
 
 	/**
 	 * Performs a transaction in which this group member receives money

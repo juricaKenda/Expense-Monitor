@@ -1,9 +1,9 @@
 package com.expenses.model;
 
 
-import com.expenses.interfaces.MemberOperations;
+import com.expenses.interfaces.MemberEssentials;
 
-public class GroupMember implements MemberOperations{
+public class GroupMember implements MemberEssentials{
 
 	private String name;
 	private int id;
