@@ -6,16 +6,18 @@
 </head>
 
 <style>
-	table, th, td {
+	input,table, th, td {
   	border: 1px solid black;
+  	font-family : courier;
+  	font-size   : 100%;
 	}	
 </style>
 	
-	<h1>Welcome!</h1>
+	<h1 style="font-family:courier;">Welcome!</h1>
 	
 <body>
 
-	<h2>Enter the member name and initial budget :</h2>
+	<h2 style="font-family:courier;">Enter the member name and initial budget :</h2>
 	
 	<form action="#" th:action="@{/home}" th:object="${member}" method="post">
 		First name: <input type="text" th:field="*{name}" >
@@ -24,7 +26,7 @@
   	</form>
 
   	
-  	<h2>Current member repository: </h2>
+  	<h2 style="font-family:courier;">Current member repository: </h2>
 
   	
 	

@@ -18,6 +18,7 @@ public class MemberRepository implements RepositoryEssentials {
 
 	//Internal storage of members
 	private HashMap<Integer,GroupMember> repository = new HashMap<>();
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(MemberRepository.class);
 	
 	
@@ -39,7 +40,7 @@ public class MemberRepository implements RepositoryEssentials {
 			return member;
 		}
 		
-		//Log and throw the error
+		//Log and throw the error, if the fetch was unsuccessful
 		GroupMemberNotFoundException groupMemberError = new GroupMemberNotFoundException(ErrorMessages.MEMBER_NOT_FOUND_MESSAGE);
 		LOGGER.error(groupMemberError.getMessage());
 		throw groupMemberError;
@@ -49,12 +50,14 @@ public class MemberRepository implements RepositoryEssentials {
 	public HashMap<Integer, GroupMember> getRepository() throws RepositoryNotInstantiatedException{
 		
 		try {
-			//Dummy code to test if the actual repository is null
+			//Dummy code to test if the repository is null
 			HashMap<Integer, GroupMember> repository = this.repository;
 			
 		}catch(NullPointerException e) {
-			//Log and throw the error
+			//Instantiate the repository
 			RepositoryNotInstantiatedException repositoryError = new RepositoryNotInstantiatedException(ErrorMessages.REPOSITORY_NOT_INSTANTIATED);
+			
+			//Log and throw the error
 			LOGGER.error(repositoryError.getMessage());
 			throw repositoryError;
 		}	
@@ -68,7 +71,6 @@ public class MemberRepository implements RepositoryEssentials {
 
 	@Override
 	public boolean deleteMemberById(int memberId) throws GroupMemberNotFoundException{
-		
 		
 		if(this.repository.get(memberId) != null) {
 			this.repository.remove(memberId);

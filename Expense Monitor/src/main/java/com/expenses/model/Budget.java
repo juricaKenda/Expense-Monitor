@@ -1,25 +1,25 @@
 package com.expenses.model;
 
-import org.springframework.stereotype.Component;
-
 import com.expenses.interfaces.BudgetingEssentials;
 
 
 public class Budget implements BudgetingEssentials{
 
-	private int balance;
+	//A person is in debt = negative value
+	//A person is owed money = positive value
+	private int debtTowardsGroup;
 
 	public Budget() {
 		
 	}
 	
 	public Budget(int startingBudget) {
-		this.balance = startingBudget;
+		this.debtTowardsGroup = startingBudget;
 	}
 
 	@Override
 	public boolean cutbackDebt(int amount) {
-		this.balance += amount;
+		this.debtTowardsGroup += amount;
 		return true; 
 		//boolean return type set for later options
 		//Example : we want to forbid budgets to go above or underneath a certain limit
@@ -27,27 +27,29 @@ public class Budget implements BudgetingEssentials{
 
 	@Override
 	public boolean raiseDebt(int amount) {
-		this.balance -= amount;
+		this.debtTowardsGroup -= amount;
 		return true;
 	}
 
 	/**
+	 * Debt is negative if person owes money,
+	 * positive if person is owed money
 	 * 
-	 * @return current budget of this group member
+	 * @return debt towards other group members
 	 */
-	public int getCurrentBudget() {
-		return balance;
+	public int getDebtTowardsGroup() {
+		return debtTowardsGroup;
 	}
-	
+
 	/**
-	 * Sets the budget of this group member
-	 * @param currentBudget
+	 * Enables user to set the members debt
+	 * @param debtTowardsGroup the amount with which the account will be affected
 	 */
-	public void setCurrentBudget(int currentBudget) {
-		this.balance = currentBudget;
+	public void setDebtTowardsGroup(int debtTowardsGroup) {
+		this.debtTowardsGroup = debtTowardsGroup;
 	}
-	
-	
+
+
 	
 	
 }

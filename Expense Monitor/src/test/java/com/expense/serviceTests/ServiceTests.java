@@ -33,7 +33,7 @@ public class ServiceTests {
 	@Test
 	public void performTransactionTest() throws InvalidTransactionException {
 		
-		//Prepare the components
+		//Prepare the components for test case
 		GroupMember sender = new GroupMember();
 		sender.setId(ServiceTestConstants.mockedSenderID);
 		sender.setBudget(ServiceTestConstants.mockedSenderStartBalance);
@@ -53,8 +53,8 @@ public class ServiceTests {
 	
 		
 		//Inspect the result
-		assertEquals(sender.getBudget(),ServiceTestConstants.mockedSenderStartBalance - transaction.getTransactionAmount());
-		assertEquals(receiver.getBudget(),ServiceTestConstants.mockedReceiverStartBalance + transaction.getTransactionAmount());
+		assertEquals(sender.getBudget(),ServiceTestConstants.mockedSenderStartBalance + transaction.getTransactionAmount());
+		assertEquals(receiver.getBudget(),ServiceTestConstants.mockedReceiverStartBalance - transaction.getTransactionAmount());
 		
 	}
 	

@@ -136,7 +136,12 @@ public class RestRequestController {
 		return "transactions";
 	}
 	
-	
+	/**
+	 * Performs the given transaction and sets up the model for new transaction
+	 * @param model model that will be set up for the next transaction
+	 * @param transaction transaction being performed
+	 * @return transaction html page
+	 */
 	@PostMapping("/transactions")
 	public String addTransaction(Model model, @ModelAttribute Transaction transaction) {
 		

@@ -8,11 +8,14 @@
 	<style>
 	table, th, td {
   	border: 1px solid black;
+  	font-family : courier;
+  	font-size   : 100%;
+	}	
 	}	
 	</style>
 	
-<h1>Perform a new transaction : </h1>
-<h3>ID = 100 for transactions coming from outside , eg. someone is receiving the payment for the entire group..</h3>
+<h1 style="font-family:courier;">Perform a new transaction : </h1>
+<h3 style="font-family:courier;">ID = 100 for transactions coming from outside , eg. someone is receiving the payment for the entire group..</h3>
 
 	<form action="#" th:action="@{/transaction}" th:object="${transaction}" method="post">
 		Sender ID: <input type="text" th:field="*{senderID}" >
@@ -22,7 +25,7 @@
   	</form>
 
 	
-<h1>Current member balance :</h1>
+<h1 style="font-family:courier;">Current member balance :</h1>
 	<table>
     	<thead>
         	<tr>
@@ -41,7 +44,7 @@
 	</table><br>
 	
 	
-<h1>List of performed transactions : </h1>
+<h1 style="font-family:courier;">List of performed transactions : </h1>
 	<table>
     	<thead>
         	<tr>

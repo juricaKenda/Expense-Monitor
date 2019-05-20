@@ -54,7 +54,7 @@ public class GroupMember implements MemberOperations{
 	}
 
 	public int getBudget() {
-		return budget.getCurrentBudget();
+		return budget.getDebtTowardsGroup();
 	}
 	
 	

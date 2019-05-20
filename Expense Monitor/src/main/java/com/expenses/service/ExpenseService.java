@@ -23,8 +23,10 @@ public class ExpenseService implements ServiceEssentials{
 
 	@Autowired
 	private MemberRepository memberRepo; //Repository for all members in a group
+	
 	@Autowired
 	private GroupMemberIDgenerator generator; //ID generator used while creating each member
+	
 	@Autowired
 	private TransactionLog transactionLog;
 	
@@ -114,7 +116,7 @@ public class ExpenseService implements ServiceEssentials{
 			int splitAmount= transaction.getTransactionAmount() / groupSize;
 			HashMap<Integer,GroupMember> entireGroup = this.memberRepo.getRepository();
 			
-			//Figure out if a member is sending or receiving
+			//Figure out if a member is sending or receiving money from outside the group
 			if(transaction.getSenderID() == TransactionConstants.OUTTER_TRANSACTION_ID) {
 				//Member is receiving, validate the member
 				GroupMember receiver = this.memberRepo.getMemberById(transaction.getReceiverID());
